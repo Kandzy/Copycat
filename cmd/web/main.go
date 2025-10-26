@@ -1,12 +1,12 @@
 package main
 
 import (
-	"Copycat/pkg/app"
+	"Copycat/internal/web"
 	"net/http"
 )
 
 func main() {
-	router := app.SetUpRoutes()
+	router := web.SetUpRoutes()
 
 	http.ListenAndServe(":8080", router)
 }
