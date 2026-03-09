@@ -1,2 +1,4 @@
 Makefile
 /bin
+sql
+.DS_Store

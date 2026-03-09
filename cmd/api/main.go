@@ -1,13 +1,12 @@
 package main
 
 import (
+	"Copycat/internal/api"
 	"net/http"
-
-	"github.com/go-chi/chi/v5"
 )
 
 func main() {
-	router := chi.NewRouter()
+	router := api.SetUpRoutes()
 
 	http.ListenAndServe(":8080", router)
 }

@@ -7,18 +7,19 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func LoginPage() chi.Router {
-	r := chi.NewRouter()
+func SignupPage() chi.Router {
+	router := chi.NewRouter()
 
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		tpl := assets.GetTemplates("")
 
-		err := tpl.ExecuteTemplate(w, "login.html", nil)
+		err := tpl.ExecuteTemplate(w, "signup.html", nil)
+
 		if err != nil {
 			http.Error(w, "Error rendering template", http.StatusInternalServerError)
 			return
 		}
 	})
 
-	return r
+	return router
 }

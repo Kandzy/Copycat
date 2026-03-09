@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"Copycat/internal/web/assets"
 	"fmt"
 	"net/http"
 
@@ -22,7 +23,19 @@ func UserRoutes() chi.Router {
 			http.Redirect(w, r, "/login", http.StatusPermanentRedirect)
 		}
 
-		w.Write([]byte("User page"))
+		tpl := assets.GetTemplates("user")
+
+		err := tpl.ExecuteTemplate(w, "details.html", map[string]string{
+			"UserId":    userId,
+			"Username":  "Kandzy",
+			"DiscordId": "Kandzy#1234",
+			"UserGroup": "Admin, Moderator",
+		})
+		if err != nil {
+			http.Error(w, "Error rendering template", http.StatusInternalServerError)
+			fmt.Println("Error rendering template:", err)
+			return
+		}
 	})
 
 	router.Get("/edit", func(w http.ResponseWriter, r *http.Request) {
